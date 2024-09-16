@@ -1,2 +1,3 @@
 # sharptimer-web-panel-nextjs
- for now i dont know what i am doing here tbh
+ In progress
+ Sharptimer Web Panel made with Next JS, React Shadcn/ui, MySQL
