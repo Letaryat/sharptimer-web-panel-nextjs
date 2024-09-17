@@ -12,9 +12,9 @@ export default function NoPlayer(){
                     We couldn't find anyone in database with that steamid! Either player does not exist or does not have any map records!
                 </AlertDescription>
             </Alert>
-            <Link href="/">
+            <Link href="/player">
                 <Button variant="secondary" className=" text-white " > 
-                    <HomeIcon className="mr-1" /> Wroc do strony glownej!
+                    <HomeIcon className="mr-1" /> Back to leaderboard
                 </Button>
             </Link>
 

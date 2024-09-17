@@ -1,4 +1,4 @@
-import executeQuery from "./dbinfo";
+import executeQuery from "../../../lib/dbinfo";
 import NoPlayer from "../noplayer";
 import {
   Table,
@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import PlayerHeader from "@/app/components/playerheader";
-import FetchSteamPlayerInfo from "@/app/api/steamfetch";
+import FetchSteamPlayerInfo from "@/app/api/steamfetch/route";
 export default async function PlayerDetails({ params }) {
   const result = await executeQuery(
     'SELECT * FROM playerstats WHERE SteamID = "' + params.playerId + '"',
