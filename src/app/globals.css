@@ -28,6 +28,14 @@ body {
   background:#1b2838 !important;
 }
 
+.playerlink{
+  text-decoration: underline;
+}
+
+.active{
+  background:red !important;
+}
+
 .warning-gradient{
   background: linear-gradient(to top left,#ee097800,#ff000013);
   border: 1px solid #ff00005d;

@@ -1,4 +1,4 @@
-import executeQuery from "../player/[playerId]/dbinfo";
+import executeQuery from "../../lib/dbinfo";
 
 const SharpData = async () => {
     const mapresult = await executeQuery(`SELECT * FROM playerrecords`, []);
