@@ -44,11 +44,15 @@ export default function ServerList() {
       port: 27015,
     },
       ];
-  
+      console.log(servers.length % 2 == 0);
   return (
+
     <div className="w-full">
       <h3 className="text-2xl font-semibold">Server list</h3>
-      <ul className="grid grid-cols-2  gap-2 ">
+      <ul className={
+      `grid 
+      ${servers.length % 2 == 0 ? 'grid-cols-2' : 'grid-cols-1'}
+        gap-2`}>
         {servers.map((d, i) => {
           return GameDig.query({
             type: servers[i]["type"],
@@ -57,6 +61,7 @@ export default function ServerList() {
             givenPortOnly: true, // the library will attempt multiple ports in order to ensure success, to avoid this pass this option
           })
             .then((state) => {
+
               return (
                 <li className="relative rounded border h-max p-1 text-card-foreground shadow hover:bg-zinc-900 object-fit">
                   <div className={
@@ -64,8 +69,8 @@ export default function ServerList() {
                   }> <ChartNoAxesColumnIncreasing/> {state['ping']}</div>
 
                   <h3 className="text-md font-semibold">{state["name"]}</h3>
-
-                  <p>Map: {state['map']}</p>
+                  <p>{state['connect']}</p>
+                  <p>{state['map']}</p>
 
                   <p>
                     Players: {`${state["numplayers"]} / ${state["maxplayers"]}`}
@@ -148,6 +153,14 @@ export default function ServerList() {
                           </Table>
                         </ScrollArea>
                       </DialogDescription>
+                      <div className="relative flex gap-2">
+                        <Button className="w-full">
+                         Copy IP
+                        </Button>
+                        <Button className="w-full">
+                          Join
+                        </Button>
+                      </div>
                     </DialogContent>
                   </Dialog>
                   </div>
