@@ -7,7 +7,7 @@ export async function StateMapChecker(props){
         )
     }else{
         return (
-            <Image className="rounded-md object-none" layout="fill" src={map.url}/>
+            <Image className="transition ease-in-out rounded-md object-none opacity-60 hover:opacity-70" layout="fill" src={map.url}/>
         )
     }
 

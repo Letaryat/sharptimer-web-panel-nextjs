@@ -1,6 +1,7 @@
 import { GameDig } from "gamedig";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ChartNoAxesColumnIncreasing, Play, Users } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -8,7 +9,7 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { StateMapChecker } from "./statemap";
+import { StateMapChecker } from "./components/statemap";
 import {
   Table,
   TableBody,
@@ -17,6 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function ServerList() {
@@ -36,7 +38,12 @@ export default function ServerList() {
       host: "91.224.117.106",
       port: 27015,
     },
-  ];
+    {
+      type: "counterstrike2",
+      host: "15.204.51.25",
+      port: 27015,
+    },
+      ];
   
   return (
     <div className="w-full">
@@ -51,24 +58,45 @@ export default function ServerList() {
           })
             .then((state) => {
               return (
-                <li className="rounded border h-32 p-1 bg-zinc-900 hover:bg-zinc-900 object-fit">
+                <li className="relative rounded border h-max p-1 text-card-foreground shadow hover:bg-zinc-900 object-fit">
+                  <div className={
+                    `flex ${state['ping'] > 150 ? 'text-red-300' : 'text-green-300'}`
+                  }> <ChartNoAxesColumnIncreasing/> {state['ping']}</div>
+
                   <h3 className="text-md font-semibold">{state["name"]}</h3>
+
+                  <p>Map: {state['map']}</p>
+
                   <p>
                     Players: {`${state["numplayers"]} / ${state["maxplayers"]}`}
                   </p>
-                  <Link className="mr-2 mt-2" href={`steam://connect/${state["connect"]}`}>
-                    <Button className="bg-teal-600 hover:bg-teal-800 font-semibold text-white">Join</Button>
+                  
+                  <div className="absolute right-0 top-0 flex flex-col h-full justify-center mr-2">
+                  <Link className="" href={`steam://connect/${state["connect"]}`}>
+                    <Button className="bg-accent text-green-400 font-semibold w-[50px] mb-2">
+                      <Play width={16} height={16} />
+                      </Button>
                   </Link>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button className="bg-cyan-600 hover:bg-cyan-800 font-semibold text-white">Players</Button>
+                    <Button className="bg-accent font-semibold text-green-400 w-[50px]">
+                    <Users width={16} height={16} /></Button>
                     </DialogTrigger>
                     <DialogContent className="bg-zinc-950">
                       <DialogHeader>Server Info</DialogHeader>
                       <DialogDescription>
-                        <div className="relative rounded-md mb-2" style={{width:"100%", height: "100px"}}>
+                        <div className="relative rounded-md mb-2 flex items-center " style={{width:"100%", height: "100px"}}>
+                        <div className="flex justify-center items-center"> 
+                        <Separator className='h-12 w-1 rounded-lg mr-2 ml-2 bg-zinc-950 z-10' orientation="vertical"/>
+                        <div>
+                        <p className="font-semibold text-xs text-teal-300 z-10 relative">Now playing:</p>
+                        <p className="font-bold text-sm relative z-10 text-center text-white uppercase">{state['map']}</p>
+                        </div>
+
+                        </div>
                         <StateMapChecker map={`https://rank.pierdolnik.eu/storage/cache/img/maps/730/${state['map']}.jpg`}/>
                         </div>
+
                         <p>
                           Online :{" "}
                           {`${state["numplayers"]} / ${state["maxplayers"]}`}
@@ -122,6 +150,8 @@ export default function ServerList() {
                       </DialogDescription>
                     </DialogContent>
                   </Dialog>
+                  </div>
+ 
                 </li>
               );
             })
