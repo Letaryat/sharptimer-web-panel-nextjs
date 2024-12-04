@@ -1,6 +1,7 @@
 'use client'
 import { Info } from "./info";
 import { DataTableDemo } from "./tabel";
+
 export default function Player() {
   return (
     <div>

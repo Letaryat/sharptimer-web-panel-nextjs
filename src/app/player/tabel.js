@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import { useState } from "react";
+
+import Image from "next/image";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -35,6 +37,7 @@ const data = await SharpFetcher();
 //console.log(data);
 
 export const columns = [
+
   {
     accessorKey: "MapName",
     header: "MapName",
@@ -48,6 +51,16 @@ export const columns = [
     header: "PlayerName",
     cell: ({ row }) => (
       <div className="capitalize">
+        <Image 
+        onLoad={(e) => {
+          console.log(e);
+        }} 
+        src={`/cache/avatar/${row.original.SteamID}.jpg`} width={10} height={10} 
+        placeholder="empty"
+        alt="elo"
+        onLoadingComplete={(img) => console.log(img.naturalWidth)}
+        
+        />
         <Link href={`/player/${row.original.SteamID}`}>{row.getValue("PlayerName")}</Link>
         </div>
     ),

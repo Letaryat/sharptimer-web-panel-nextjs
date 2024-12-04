@@ -1,12 +1,15 @@
-import SteamAvatarSaver from "../api/avatarsave/route";
-import Pen from "../api/avatarsave/route";
+import Image from 'next/image';
 
-export default async function ImageSaver() {
-    //let test = await SteamAvatarSaver("76561198100544780");
-    return (
-      <div>
-
-      </div>
-    );
-  }
-  
+export default function AvatarPage({ steamID }) {
+  return (
+    <div>
+      <h1>User Avatar</h1>
+      <Image
+        src={`/api/checkavatar/76561199530072848`} // Dynamically load the image via the API
+        alt="User Avatar"
+        width={100}
+        height={100}
+      />
+    </div>
+  );
+}

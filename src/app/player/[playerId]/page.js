@@ -34,11 +34,7 @@ export default async function PlayerDetails({ params }) {
     );
   }
   let PlayerSteamData = await FetchSteamPlayerInfo(playerdata['SteamID']);
-
-  if(!fs.existsSync(`src/cache/avatar/${params.playerId}`)){
-    await SteamAvatarSaver(params.playerId);
-  }
-
+  await SteamAvatarSaver(params.playerId);
   return (
       <div>
       <PlayerHeader
