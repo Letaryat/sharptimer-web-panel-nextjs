@@ -1,3 +1,4 @@
+
 export default async function FetchSteamPlayerInfo(sid){
     const key = "";
     let steamid = sid;

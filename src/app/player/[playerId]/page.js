@@ -11,6 +11,10 @@ import {
 } from "@/components/ui/table";
 import PlayerHeader from "@/app/components/playerheader";
 import FetchSteamPlayerInfo from "@/app/api/steamfetch/route";
+import SteamAvatarSaver from "@/app/api/avatarsave/route";
+import fs from 'fs';
+
+
 export default async function PlayerDetails({ params }) {
   const result = await executeQuery(
     'SELECT * FROM playerstats WHERE SteamID = "' + params.playerId + '"',
@@ -30,6 +34,10 @@ export default async function PlayerDetails({ params }) {
     );
   }
   let PlayerSteamData = await FetchSteamPlayerInfo(playerdata['SteamID']);
+
+  if(!fs.existsSync(`src/cache/avatar/${params.playerId}`)){
+    await SteamAvatarSaver(params.playerId);
+  }
 
   return (
       <div>

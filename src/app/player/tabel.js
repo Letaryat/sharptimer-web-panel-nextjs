@@ -39,7 +39,7 @@ export const columns = [
     accessorKey: "MapName",
     header: "MapName",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("MapName")}</div>
+      <div className="capitalize">{row.getValue("MapName")} </div>
     ),
   },
 
@@ -47,7 +47,9 @@ export const columns = [
     accessorKey: "PlayerName",
     header: "PlayerName",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("PlayerName")}</div>
+      <div className="capitalize">
+        <Link href={`/player/${row.original.SteamID}`}>{row.getValue("PlayerName")}</Link>
+        </div>
     ),
   },
 
