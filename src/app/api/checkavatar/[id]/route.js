@@ -2,10 +2,15 @@ import fs from 'fs';
 export async function GET(request, { params }) {
     const { id } = params;
     const path = 'public/cache/avatar/';
-    console.log(request.headers);  
+    let userid = id;
+    let imageBuffer;
+    if(!fs.existsSync(`public/cache/avatar/${userid}.jpg`)) { 
+        userid = "default";
+    }
+    imageBuffer = fs.readFileSync(`${path}/${userid}.jpg`);
+    //console.log(request.headers);  
     const headers = new Headers();
-    headers.set('Content-Type', 'image/jpeg'); 
-    const imageBuffer = fs.readFileSync(`${path}/${id}.jpg`);
+    //headers.set('Content-Type', 'image/jpeg'); 
     try{
         return new Response(imageBuffer, {
             status: 200,
