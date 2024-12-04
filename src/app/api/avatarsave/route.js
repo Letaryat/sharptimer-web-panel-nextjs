@@ -1,6 +1,6 @@
 import fs from 'fs';
 import fetch from 'node-fetch';
-const savePath = 'src/cache/avatar/';
+const savePath = 'public/cache/avatar';
 export default async function SteamAvatarSaver(sid){
   const key = "";
   let steamid = sid;
