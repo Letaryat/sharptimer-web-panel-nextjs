@@ -1,4 +1,4 @@
-import { query } from "@/lib/db";
+import { query } from "@/lib/dbinfo";
 
 export async function GET(request){
     const users = await query({

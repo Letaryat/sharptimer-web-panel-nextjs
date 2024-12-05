@@ -40,3 +40,7 @@ src/app/api/shite
 src/app/test
 src/app/player/chujwie
 src/app/player/[playerid]/kopie
+.env
+src/lib/db3.js
+public/cache/avatar
+src/app/imagesaver

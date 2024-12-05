@@ -30,11 +30,6 @@ export default function ServerList() {
     },
     {
       type: "counterstrike2",
-      host: "145.239.24.88",
-      port: 27015,
-    },
-    {
-      type: "counterstrike2",
       host: "91.224.117.106",
       port: 27015,
     },

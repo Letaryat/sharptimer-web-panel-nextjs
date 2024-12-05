@@ -1,7 +1,7 @@
-import { query } from "@/lib/db";
+import executeQuery from "@/lib/dbinfo";
 
 export async function GET(request){
-    const users = await query({
+    const users = await executeQuery({
         query: "SELECT * FROM playerrecords ORDER BY TimerTicks DESC",
         values: [],
     });

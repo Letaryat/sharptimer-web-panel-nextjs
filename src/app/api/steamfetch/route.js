@@ -1,5 +1,5 @@
 export default async function FetchSteamPlayerInfo(sid){
-    const key = "";
+    const key = process.env.STEAM_API_KEY;
     let steamid = sid;
     //const sid = "76561198100544780"
     const response = await fetch(`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${key}&steamids=${steamid}`);

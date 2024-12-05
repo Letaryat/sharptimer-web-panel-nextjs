@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import { useState } from "react";
-
 import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -29,7 +29,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import SharpFetcher from "../api/sharpfetch/route";
-import FetchSteamPlayerInfo from "../api/steamfetch/route";
 import Link from "next/link";
 
 const columnHelper = createColumnHelper();
@@ -50,18 +49,13 @@ export const columns = [
     accessorKey: "PlayerName",
     header: "PlayerName",
     cell: ({ row }) => (
-      <div className="capitalize">
-        <Image 
-        onLoad={(e) => {
-          console.log(e);
-        }} 
-        src={`/cache/avatar/${row.original.SteamID}.jpg`} width={10} height={10} 
-        placeholder="empty"
-        alt="elo"
-        onLoadingComplete={(img) => console.log(img.naturalWidth)}
-        
-        />
-        <Link href={`/player/${row.original.SteamID}`}>{row.getValue("PlayerName")}</Link>
+      <div className="capitalize flex gap-1 items-center">
+        <Avatar>
+          <AvatarImage src={`/api/checkavatar/${row.original.SteamID}`}></AvatarImage>
+          <AvatarFallback>{row.getValue("PlayerName")}</AvatarFallback>
+        </Avatar>
+
+        <Link className="hover:text-teal-300" href={`/player/${row.original.SteamID}`}>{row.getValue("PlayerName")}</Link>
         </div>
     ),
   },

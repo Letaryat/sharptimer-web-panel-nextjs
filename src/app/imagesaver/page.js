@@ -1,6 +1,7 @@
 import Image from 'next/image';
-
+import SteamAvatarSaver from '../api/avatarsave/route';
 export default function AvatarPage({ steamID }) {
+  SteamAvatarSaver("76561199530072848");
   return (
     <div>
       <h1>User Avatar</h1>
